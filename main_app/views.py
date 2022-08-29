@@ -13,3 +13,7 @@ def about(request):
 def llamas_index(request):
     llamas = Llama.objects.all()
     return render(request, 'llamas/index.html', {'llamas': llamas})
+
+def llamas_detail(request, llama_id):
+    llama = Llama.objects.get(id=llama_id)
+    return render(request, 'llamas/detail.html', {'llama': llama})
