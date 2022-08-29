@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Llama List</h1>
+
+{% for llama in llamas %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ llama.name }}</span>
+      <p>Breed: {{ llama.breed }}</p>
+      <p>Description: {{ llama.description }}</p>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
