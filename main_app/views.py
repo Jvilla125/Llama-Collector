@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .models import Llama
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import Llama # Llama class 
+
 
 # Create your views here.
 from django.http import HttpResponse
@@ -17,3 +19,9 @@ def llamas_index(request):
 def llamas_detail(request, llama_id):
     llama = Llama.objects.get(id=llama_id)
     return render(request, 'llamas/detail.html', {'llama': llama})
+
+class LlamaCreate(CreateView):
+    model = Llama 
+    fields = '__all__' # or it can be listed as fields = ['name', 'breed', 'description']
+    success_url = '/llamas/'
+

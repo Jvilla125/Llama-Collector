@@ -9,6 +9,10 @@
         <p>Breed: {{llama.breed}}</p>
         <p>Description: {{llama.description}} </p>
     </div>
+    <div class="card-action">
+        <a href="{% url 'llamas_update' llama.id %}">Edit</a>
+        <a href="{% url 'llamas_delete' llama.id%}">Delete</a>
+    </div>
 </div>
 {% endblock %}
     
