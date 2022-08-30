@@ -25,3 +25,10 @@ class LlamaCreate(CreateView):
     fields = '__all__' # or it can be listed as fields = ['name', 'breed', 'description']
     success_url = '/llamas/'
 
+class LlamaUpdate(UpdateView):
+    model = Llama
+    fields = ['breed', 'description']
+
+class LlamaDelete(DeleteView):
+    model = Llama
+    success_url = '/llamas/'
