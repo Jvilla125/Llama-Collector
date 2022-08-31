@@ -8,10 +8,22 @@ MEALS = (
     ('D', 'Dinner')
 )
 
+class Toy(models.Model):
+    name = models.CharField(max_length=100)
+    color = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('toys_detail', kwargs={'pk': self.id})
+
 class Llama(models.Model):
     name = models.CharField(max_length=100)
     breed = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=250)
+    # Add the M:M relationship
+    toys = models.ManyToManyField(Toy)
 
 def __str__(self):
     return self.name
