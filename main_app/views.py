@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Llama # Llama class 
-
+from .forms import FeedingForm
 
 # Create your views here.
 from django.http import HttpResponse
@@ -18,7 +18,10 @@ def llamas_index(request):
 
 def llamas_detail(request, llama_id):
     llama = Llama.objects.get(id=llama_id)
-    return render(request, 'llamas/detail.html', {'llama': llama})
+    feeding_form = FeedingForm()
+    return render(request, 'llamas/detail.html', {
+        'llama': llama, 'feeding_form': feeding_form
+    })
 
 class LlamaCreate(CreateView):
     model = Llama 
@@ -32,3 +35,11 @@ class LlamaUpdate(UpdateView):
 class LlamaDelete(DeleteView):
     model = Llama
     success_url = '/llamas/'
+
+def add_feeding(request, llama_id):
+    form = FeedingForm(request.POST)
+    if form.is_valid():
+        new_feeding = form.save(commit=False)
+        new_feeding.llama_id = llama_id
+        new_feeding.save()
+    return redirect('detail', llama_id=llama_id)

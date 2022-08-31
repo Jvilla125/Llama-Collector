@@ -10,5 +10,6 @@ urlpatterns = [
     path('llamas/create/', views.LlamaCreate.as_view(), name='llamas_create'),
     path('llamas/<int:pk>/update/',  views.LlamaUpdate.as_view(), name='llamas_update'),
     path('llamas/<int:pk>/delete/', views.LlamaDelete.as_view(), name='llamas_delete'),
+    path('llamas/<int:llama_id>/add_feeding/', views.add_feeding, name='add_feeding'),
 ]
 
